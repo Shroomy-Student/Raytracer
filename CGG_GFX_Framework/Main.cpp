@@ -1,9 +1,11 @@
 
 #include <cmath>
+#include <memory>
 
 #include "CGG_Main.h"
-
-
+#include "Camera.h"
+#include "Ray.h"
+#include "Tracer.h"
 
 int main(int argc, char *argv[])
 {
@@ -32,20 +34,24 @@ int main(int argc, char *argv[])
 	int red = 255;
 	int green = 0;
 	int blue = 0;
+	glm::vec3 color = glm::vec3(red, green, blue);
 
-	
+	//std::shared_ptr<Camera> camera = std::make_shared<Camera>();
+	Camera camera;
+	//std::shared_ptr<Tracer> tracer = std::make_shared<Tracer>();
+	Tracer tracer;
 	// Draws a single pixel at the specified coordinates in the specified colour!
 	for (int y = 0; y <= windowHeight; y++)
 	{
 		for (int x= 0; x <= windowWidth; x++)
 		{
-			CGG::DrawPixel(x, y, red, green, blue);
+			// generate primary ray
+			std::shared_ptr<Ray> ray = camera.MakeRay(x, y);
+			color = tracer.TraceRay(ray);
+			
+			CGG::DrawPixel(x, y, color);
 		}
 	}
-
-
-	// Do any other DrawPixel calls here
-	// ...
 
 	// Displays drawing to screen and holds until user closes window
 	// You must call this after all your drawing calls

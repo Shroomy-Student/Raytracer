@@ -1,7 +1,7 @@
 
 #ifndef __CGG_MAIN__
 #define __CGG_MAIN__
-
+#include <ext.hpp>
 
 
 namespace CGG
@@ -14,7 +14,7 @@ namespace CGG
 	void SetBackground( int red, int green, int blue );
 	
 	/// Draws a single pixel to screen. If coordinates are out of bounds, does nothing
-	void DrawPixel( int pixelX, int pixelY, int red, int green, int blue );
+	void DrawPixel( int pixelX, int pixelY, glm::vec3 color);
 
 	/// Displays graphics to screen and keeps window open until user requests exit (pressing escape key or closing window)
 	int ShowAndHold();

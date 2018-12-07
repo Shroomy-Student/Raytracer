@@ -86,10 +86,10 @@ void CGG::SetBackground( int red, int green, int blue )
 
 }
 	
-void CGG::DrawPixel( int pixelX, int pixelY, int red, int green, int blue )
+void CGG::DrawPixel( int pixelX, int pixelY, glm::vec3 color)
 {
 	// Set the colour for drawing
-	SDL_SetRenderDrawColor(_renderer, red, green, blue, 255);
+	SDL_SetRenderDrawColor(_renderer, color.x, color.y, color.z, 255);
 	// Draw our pixel
 	SDL_RenderDrawPoint(_renderer, pixelX, pixelY);
 }
